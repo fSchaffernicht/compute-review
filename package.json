@@ -1,0 +1,28 @@
+{
+  "name": "compute-review",
+  "version": "1.0.0",
+  "description": "compute code reviewer",
+  "main": "index.js",
+  "scripts": {
+    "test": "tape -r babel-register ./tests/compute-test.js | tap-spec",
+    "tdd": "tape-watch -r babel-register ./tests/compute-test.js | tap-spec"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fSchaffernicht/compute-review.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fSchaffernicht/compute-review/issues"
+  },
+  "homepage": "https://github.com/fSchaffernicht/compute-review#readme",
+  "devDependencies": {
+    "babel-cli": "^6.18.0",
+    "babel-preset-latest": "^6.16.0",
+    "babel-register": "^6.18.0",
+    "tap-spec": "^4.1.1",
+    "tape": "^4.6.3",
+    "tape-watch": "^2.2.4"
+  }
+}
