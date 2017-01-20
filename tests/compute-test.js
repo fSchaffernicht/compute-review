@@ -16,11 +16,33 @@ test('compute', t => {
   t.end()
 })
 
-test('reviewer are unique', t => {
-  const reviewer = computeReview(['Stephan', 'Dominik', 'Florian', 'Felix']).map(x => x.reviewer)
-  const reviewee = computeReview(['Stephan', 'Dominik', 'Florian', 'Felix']).map(x => x.reviewee)
+const everythingIsUnique = (names, times) => {
+  let isTrue;
 
-  t.deepEqual(uniq(reviewer), reviewer, 'reviewer should be unique')
-  t.deepEqual(uniq(reviewee), reviewee, 'reviewee should be unique')
+  for (var i = 0; i < times; i++) {
+    const pairs = computeReview(names)
+    const reviewer = pairs.map(x => x.reviewer)
+    const reviewee = pairs.map(x => x.reviewee)
+
+    isTrue = (
+      uniq(reviewer).length === reviewer.length &&
+      uniq(reviewee).length === reviewer.length
+    )
+
+    if (!isTrue) {
+      return false
+    }
+  }
+
+  return true
+}
+
+test('reviewer are unique', t => {
+  t.ok(everythingIsUnique(['Stephan', 'Dominik', 'Florian', 'Felix'], 1000), 'reviewers should be unique')
+  t.end()
+})
+
+test('one person is sick', t => {
+  t.ok(everythingIsUnique(['Stephan', 'Dominik', 'Florian'], 1000), 'only 3 reviewers should be unique')
   t.end()
 })
