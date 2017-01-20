@@ -10,7 +10,10 @@ export const computeReview = names => {
   let result = []
   for (var i = 0; i < randomArr.length; i++) {
     const lastIndex = (i + 1) % randomArr.length
-    const item = `${randomArr[i]} -> ${randomArr[lastIndex]}`
+    const item = {
+      reviewer: randomArr[lastIndex],
+      reviewee: randomArr[i]
+    }
 
     result.push(item)
   }

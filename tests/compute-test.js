@@ -1,4 +1,5 @@
 import test from 'tape'
+import { uniq } from 'lodash'
 import { computeReview, getUniqueIndex } from '../src/compute'
 
 test('getUniqueIndex', t => {
@@ -15,9 +16,11 @@ test('compute', t => {
   t.end()
 })
 
-// TODO: write test to check if names are unique
 test('reviewer are unique', t => {
-  const actual = computeReview(['Stephan', 'Dominik', 'Florian', 'Felix'])
+  const reviewer = computeReview(['Stephan', 'Dominik', 'Florian', 'Felix']).map(x => x.reviewer)
+  const reviewee = computeReview(['Stephan', 'Dominik', 'Florian', 'Felix']).map(x => x.reviewee)
 
-  t.end(actual, )
+  t.deepEqual(uniq(reviewer), reviewer, 'reviewer should be unique')
+  t.deepEqual(uniq(reviewee), reviewee, 'reviewee should be unique')
+  t.end()
 })
