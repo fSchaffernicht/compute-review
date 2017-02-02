@@ -4,8 +4,12 @@
   "description": "compute code reviewer",
   "main": "index.js",
   "scripts": {
-    "start": "babel-node app.js",
-    "test": "tape -r babel-register ./tests/compute-test.js | tap-spec",
+    "review-cli": "babel-node app.js",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject",
+    "tape-test": "tape -r babel-register ./tests/compute-test.js | tap-spec",
     "tdd": "tape-watch -r babel-register ./tests/compute-test.js | tap-spec"
   },
   "repository": {
@@ -18,7 +22,15 @@
     "url": "https://github.com/fSchaffernicht/compute-review/issues"
   },
   "homepage": "https://github.com/fSchaffernicht/compute-review#readme",
+  "dependencies": {
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2",
+    "react-redux": "^5.0.2",
+    "redux": "^3.6.0",
+    "redux-logger": "^2.8.0"
+  },
   "devDependencies": {
+    "react-scripts": "0.8.5",
     "babel-cli": "^6.18.0",
     "babel-preset-latest": "^6.16.0",
     "babel-register": "^6.18.0",
