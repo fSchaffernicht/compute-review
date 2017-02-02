@@ -12,6 +12,12 @@
     "tape-test": "tape -r babel-register ./tests/compute-test.js | tap-spec",
     "tdd": "tape-watch -r babel-register ./tests/compute-test.js | tap-spec"
   },
+  "jest": {
+    "unmockedModulePathPatterns": [
+      "node_modules/react/",
+      "node_modules/enzyme/"
+    ]
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/fSchaffernicht/compute-review.git"
@@ -27,15 +33,18 @@
     "react-dom": "^15.4.2",
     "react-redux": "^5.0.2",
     "redux": "^3.6.0",
-    "redux-logger": "^2.8.0"
+    "redux-logger": "^2.8.0",
+    "styled-components": "^1.4.2"
   },
   "devDependencies": {
-    "react-scripts": "0.8.5",
     "babel-cli": "^6.18.0",
     "babel-preset-latest": "^6.16.0",
     "babel-register": "^6.18.0",
+    "jest-enzyme": "^2.1.0",
     "lodash": "^4.17.4",
     "prompt": "^1.0.0",
+    "react-addons-test-utils": "^15.4.2",
+    "react-scripts": "0.8.5",
     "tap-spec": "^4.1.1",
     "tape": "^4.6.3",
     "tape-watch": "^2.2.4"

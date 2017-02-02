@@ -2,40 +2,36 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import { connect } from 'react-redux';
-import { greetings } from './actions'; 
+import { greetings } from './actions';
 
-const App = (props) => { 
-    console.log(props);
-    return (
-      <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
-        </div>
-        <p onClick={() => props.onGreet("Dominik")} className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p> {
-          props.name
-        }
-      </div>
-    );
+// components
+import { List, Button, Input } from './components'
+
+const App = (props) => {
+  return (
+    <div className="App">
+      <div onClick={ () => props.onGreet('Kartoffel')}>click me</div>
+      <List>{ props.name }</List>
+
+    </div>
+  );
 }
 
 const mapStateToProps = state => {
- return {
-   name : state.name,
- }
+  return {
+    name : state.name,
+  }
 }
 
 const mapDispatchToProps = dispatch => {
- return {
-   onGreet: (text) => dispatch(greetings(text))
- }
+  return {
+    onGreet: (text) => dispatch(greetings(text))
+  }
 }
 
 const StartApp = connect(
- mapStateToProps,
- mapDispatchToProps
+  mapStateToProps,
+  mapDispatchToProps
 )(App)
 
 
