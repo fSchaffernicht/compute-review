@@ -4,8 +4,8 @@ import { Button, Input } from './index'
 const FormInput = props => {
   return (
     <div>
-      <Button></Button>
-      <Input />
+      <Button onClick={props.onClick}></Button>
+      <Input onChange={props.onChange} />
     </div>
   )
 }
