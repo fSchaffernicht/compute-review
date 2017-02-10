@@ -96,3 +96,4 @@ it('should throw error when user types in input same name', () => {
 
   expect(actual).toEqual(expected)
 })
+
