@@ -5,19 +5,17 @@ import { connect } from 'react-redux';
 import { changeInput,addName } from './actions'
 
 // components
-import { List, Button, Input, FormInput } from './components'
+import { List, Button, Input, FormInput, ErrorDisplay } from './components'
+
 
 const App = (props) => {
   return (
     <div className="App">
+      <ErrorDisplay error={props.error} />
       <FormInput
         onChange={ event => props.onInputChange(event.target.value) }
-        onClick={ () => props.onAddName('value')}/>
+        onClick={ () => props.onAddName(props.name)}/>
       <List>{ props.name }</List>
-      {
-        props.error &&
-        <div>{ props.error }</div>
-      }
     </div>
   );
 }

@@ -1,9 +1,12 @@
 import React from 'react'
+import ListItem from './listitem'
 
 const List = props => {
   return (
     <ul>
-      { props.children }
+      { props.names.map((item, index) => {
+        return (<ListItem key={index} name={item}></ListItem>);
+      }) }
     </ul>
   )
 }
