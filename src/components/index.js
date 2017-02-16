@@ -4,6 +4,7 @@ import Button from './button'
 import Input from './input'
 import FormInput from './formInput'
 import ErrorDisplay from './errorDisplay'
+import Pairs from './pairs'
 
 export {
   List,
@@ -12,4 +13,5 @@ export {
   Input,
   FormInput,
   ErrorDisplay,
+  Pairs,
 }

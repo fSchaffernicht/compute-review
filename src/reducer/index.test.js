@@ -35,16 +35,32 @@ it('should add new Name', () => {
 
   const actual = teamReducer(state, addName('Satan'))
   const expected = {
-    inputText: {
-      value: '',
-      error: ''
-    },
     names: [
       'Satan'
     ]
   }
 
-  expect(actual).toEqual(expected)
+  expect(actual.names).toEqual(expected.names)
+})
+
+it('should clear name after adding it', () => {
+  const state = {
+    inputText: {
+      value: 'Satan',
+      error: ''
+    },
+    names: [],
+  }
+
+  const actual = teamReducer(state, addName('Satan'))
+  const expected = {
+    inputText: {
+      value: '',
+      error: ''
+    },
+  }
+
+  expect(actual.inputText).toEqual(expected.inputText)
 })
 
 it('text shouldn\'t be empty', () => {
@@ -97,3 +113,40 @@ it('should throw error when user types in input same name', () => {
   expect(actual).toEqual(expected)
 })
 
+it('should throw error when trying to add duplicate', () => {
+  const state = {
+    inputText: {
+      value: 'Florian',
+      error: ''
+    },
+    names: [
+      'Florian'
+    ],
+  }
+
+
+  const actual = teamReducer(state, addName('Florian'))
+  const expected = {
+    inputText: {
+      value: 'Florian',
+      error: errors.duplicateName
+    },
+    names: [
+      'Florian'
+    ],
+  }
+
+  expect(actual).toEqual(expected);
+})
+
+it('should generate two pairs for two names', () => {
+  const state = {
+    names: [
+      'Felix',
+    ],
+  }
+
+  const actual = teamReducer(state, addName('Florian'));
+
+  expect(actual.pairs.length).toEqual(2);
+})

@@ -5,8 +5,8 @@ const FormInput = props => {
 
   return (
     <div>
-      <Button onClick={props.onClick}></Button>
-      <Input onChange={props.onChange} />
+      <Button onClick={props.onClick}>Add</Button>
+      <Input onChange={props.onChange} value={props.name} />
     </div>
   )
 }

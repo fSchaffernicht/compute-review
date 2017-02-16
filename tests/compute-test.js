@@ -10,6 +10,13 @@ test('getUniqueIndex', t => {
 })
 
 test('compute', t => {
+  const actual = computeReview(['Stephan', 'Dominik'])
+
+  t.is(actual.length, 2, 'two names should be 2 pairs')
+  t.end()
+})
+
+test('compute', t => {
   const actual = computeReview(['Stephan', 'Dominik', 'Florian', 'Felix'])
 
   t.is(actual.length, 4, 'four names should be 4 pairs')

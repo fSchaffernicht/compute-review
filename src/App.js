@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { changeInput,addName } from './actions'
 
 // components
-import { List, Button, Input, FormInput, ErrorDisplay } from './components'
+import { List, Button, Input, FormInput, ErrorDisplay, Pairs } from './components'
 
 
 const App = (props) => {
@@ -14,16 +14,22 @@ const App = (props) => {
       <ErrorDisplay error={props.error} />
       <FormInput
         onChange={ event => props.onInputChange(event.target.value) }
-        onClick={ () => props.onAddName(props.name)}/>
-      <List>{ props.name }</List>
+        onClick={ () => props.onAddName(props.name)}
+        name={props.name}
+      />
+      <List names={ props.names } />
+      <hr/>
+      <Pairs pairs={props.pairs} />
     </div>
   );
 }
 
 const mapStateToProps = state => {
   return {
+    names : state.names,
     name : state.inputText.value,
-    error: state.inputText.error
+    error: state.inputText.error,
+    pairs: state.pairs,
   }
 }
 
