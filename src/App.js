@@ -5,7 +5,8 @@ import { connect } from 'react-redux';
 import { changeInput,addName } from './actions'
 
 // components
-import { List, Button, Input, FormInput, ErrorDisplay, Pairs } from './components'
+import { List, Button, Input, FormInput, ErrorDisplay, Pairs, Link } from './components';
+import { generateMailtoLink } from './util';
 
 
 const App = (props) => {
@@ -20,6 +21,8 @@ const App = (props) => {
       <List names={ props.names } />
       <hr/>
       <Pairs pairs={props.pairs} />
+      <hr/>
+      <Link href={generateMailtoLink({ pairs: props.pairs, })}>Send Mail!</Link>
     </div>
   );
 }

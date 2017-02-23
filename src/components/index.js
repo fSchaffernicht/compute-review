@@ -5,12 +5,14 @@ import Input from './input'
 import FormInput from './formInput'
 import ErrorDisplay from './errorDisplay'
 import Pairs from './pairs'
+import Link from './link'
 
 export {
   List,
   ListItem,
   Button,
   Input,
+  Link,
   FormInput,
   ErrorDisplay,
   Pairs,
