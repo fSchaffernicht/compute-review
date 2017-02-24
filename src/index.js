@@ -6,9 +6,23 @@ import { createStore, applyMiddleware } from 'redux';
 import teamReducer from './reducer';
 import './index.css';
 import createLogger from 'redux-logger';
+import createEngine from 'redux-storage-engine-localstorage';
+import * as storage from 'redux-storage';
+import { combineReducers } from 'redux';
 
 const logger = createLogger();
-const store = createStore(teamReducer, applyMiddleware(logger));
+const engine = createEngine('review-storage');
+const storageMiddleware = storage.createMiddleware(engine);
+
+const store = createStore(teamReducer, applyMiddleware(logger, storageMiddleware));
+
+const loadStorage = storage.createLoader(engine);
+loadStorage(store)
+    .then((newState) => {
+      console.log('Loaded state:', newState)
+    })
+    .catch(() => console.log('Failed to load previous state'));
+
 
 ReactDOM.render(
   <Provider store={store}>

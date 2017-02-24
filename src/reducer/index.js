@@ -1,4 +1,5 @@
 import { CHANGE_INPUT, ADD_NAME } from '../actions'
+    import { LOAD, SAVE } from 'redux-storage';
 
 import { errors } from '../const'
 
@@ -15,6 +16,17 @@ const initialState = {
 
 const teamReducer = (state = initialState, action) => {
   switch (action.type) {
+
+
+    case LOAD: {
+        return action.payload;
+      }
+
+    // case SAVE: {
+    //     return state;
+    //   }
+
+
     case CHANGE_INPUT: {
       const includesName = state.names.includes(action.payload)
       return {
@@ -67,8 +79,10 @@ const teamReducer = (state = initialState, action) => {
       }
     }
 
-    default:
+    default: {
+      console.log("default!")
       return state;
+    }
   }
 }
 
