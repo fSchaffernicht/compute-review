@@ -1,5 +1,5 @@
 import teamReducer from './index'
-import { changeInput, addName } from '../actions'
+import { changeInput, addName, removeName } from '../actions'
 
 import { errors } from '../const'
 
@@ -149,4 +149,50 @@ it('should generate two pairs for two names', () => {
   const actual = teamReducer(state, addName('Florian'));
 
   expect(actual.pairs.length).toEqual(2);
+})
+
+it('can remove items from list', () => {
+  const state = {
+    names: [
+      "Florian",
+      "Felix",
+    ]
+  }
+
+  const expected = {
+    names: [
+      "Florian",
+    ]
+  }
+
+  const actual = teamReducer(state, removeName('Felix'));
+
+  expect(actual.names).toEqual(expected.names);
+  expect(actual.pairs.length).toEqual(1);
+})
+
+it('can not remove empty name from list', () => {
+  const state = {
+    names: [
+      "Florian",
+      "Felix",
+    ]
+  }
+
+  const actual = teamReducer(state, removeName(''));
+
+  expect(actual.names).toEqual(state.names);
+})
+
+it('can not remove null from list', () => {
+  const state = {
+    names: [
+      "Florian",
+      "Felix",
+    ]
+  }
+
+  const actual = teamReducer(state, removeName(null));
+
+  expect(actual.names).toEqual(state.names);
 })

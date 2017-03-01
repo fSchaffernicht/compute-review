@@ -1,4 +1,4 @@
-import { CHANGE_INPUT, ADD_NAME } from '../actions'
+import { CHANGE_INPUT, ADD_NAME, REMOVE_NAME } from '../actions'
     import { LOAD, SAVE } from 'redux-storage';
 
 import { errors } from '../const'
@@ -76,6 +76,17 @@ const teamReducer = (state = initialState, action) => {
           names: newNames,
           pairs: computeReview(newNames),
         }
+      }
+    }
+
+    case REMOVE_NAME: {
+      const newNames = state.names.filter((item, index) => {
+            return item !== action.payload
+          })
+      return {
+        ...state,
+        names: newNames,
+        pairs: computeReview(newNames),
       }
     }
 

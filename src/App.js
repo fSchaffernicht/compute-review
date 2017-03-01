@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import { connect } from 'react-redux';
-import { changeInput,addName } from './actions'
+import { changeInput, addName, removeName } from './actions'
 
 // components
 import { List, Button, Input, FormInput, ErrorDisplay, Pairs, Link } from './components';
@@ -18,7 +18,10 @@ const App = (props) => {
         onClick={ () => props.onAddName(props.name)}
         name={props.name}
       />
-      <List names={ props.names } />
+      <List
+        names={ props.names }
+        onRemove={ (name) => props.onRemoveName(name)}
+        />
       <hr/>
       <Pairs pairs={props.pairs} />
       <hr/>
@@ -39,7 +42,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     onInputChange: (text) => dispatch(changeInput(text)),
-    onAddName: (name) => dispatch(addName(name))
+    onAddName: (name) => dispatch(addName(name)),
+    onRemoveName: (name) => dispatch(removeName(name))
   }
 }
 
