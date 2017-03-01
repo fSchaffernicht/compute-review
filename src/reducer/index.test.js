@@ -1,5 +1,5 @@
 import teamReducer from './index'
-import { changeInput, addName, removeName } from '../actions'
+import { changeInput, addName, removeName, toggleAvailability } from '../actions'
 
 import { errors } from '../const'
 
@@ -195,4 +195,32 @@ it('can not remove null from list', () => {
   const actual = teamReducer(state, removeName(null));
 
   expect(actual.names).toEqual(state.names);
+})
+
+it('if 1 of 4 persons is notAvailable, then the reducer has to build only 3 pairs', () => {
+  const state = {
+    names: [
+      {
+        name: "Florian",
+        notAvailable: false
+      },
+      {
+        name: "Felix",
+        notAvailable: false,
+      },
+      {
+        name: "Dominik",
+        notAvailable: false,
+      },
+      {
+        name: "Stephan",
+        notAvailable: false,
+      }
+    ]
+  }
+
+  const actual = teamReducer(state, toggleAvailability("Dominik"));
+
+  expect(actual.pairs.length).toEqual(3);
+  expect(actual.names.find((item) => { return item.name === "Dominik" }).notAvailable).toEqual(true);
 })

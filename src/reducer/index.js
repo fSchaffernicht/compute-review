@@ -1,9 +1,9 @@
-import { CHANGE_INPUT, ADD_NAME, REMOVE_NAME } from '../actions'
-    import { LOAD, SAVE } from 'redux-storage';
+import { CHANGE_INPUT, ADD_NAME, REMOVE_NAME, TOGGLE_AVAILABILITY } from '../actions'
+import { LOAD, SAVE } from 'redux-storage';
 
 import { errors } from '../const'
 
-import {computeReview} from '../compute';
+import {computePairsAvailable} from '../compute';
 
 const initialState = {
   inputText: {
@@ -41,8 +41,14 @@ const teamReducer = (state = initialState, action) => {
     case ADD_NAME: {
       const isEmpty = action.payload === ''
 
-      const newNames = [ ...state.names, action.payload ]
-      const isDuplicate = state.names.includes(action.payload)
+      const newNames = [
+        ...state.names,
+        {
+          name: action.payload,
+          notAvailable: false
+        }
+      ]
+      const isDuplicate = state.names.map((item) => item.name).includes(action.payload)
 
       if (isEmpty) {
         return {
@@ -63,10 +69,6 @@ const teamReducer = (state = initialState, action) => {
         }
       }
       else {
-        const newNames = [
-          ...state.names,
-          action.payload
-        ]
         return {
           ...state,
           inputText: {
@@ -74,19 +76,33 @@ const teamReducer = (state = initialState, action) => {
             error: ''
           },
           names: newNames,
-          pairs: computeReview(newNames),
+          pairs: computePairsAvailable(newNames),
         }
       }
     }
 
     case REMOVE_NAME: {
       const newNames = state.names.filter((item, index) => {
-            return item !== action.payload
+            return item.name !== action.payload
           })
       return {
         ...state,
         names: newNames,
-        pairs: computeReview(newNames),
+        pairs: computePairsAvailable(newNames),
+      }
+    }
+
+    case TOGGLE_AVAILABILITY: {
+      const newNames = state.names.map((item, index) => {
+        if(item.name === action.payload) {
+          item.notAvailable = true;
+        }
+        return item
+      })
+
+      return {...state,
+        names: newNames,
+        pairs: computePairsAvailable(newNames),
       }
     }
 

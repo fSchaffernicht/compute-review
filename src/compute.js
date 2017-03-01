@@ -34,3 +34,7 @@ export const getUniqueIndex = (list, max) => {
 
   return newIndex
 }
+
+export const computePairsAvailable = (names) => {
+  return computeReview(names.filter((item) => !item.notAvailable))
+}
