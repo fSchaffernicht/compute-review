@@ -7,17 +7,12 @@ import { shallow, mount, render } from 'enzyme';
 // components
 import { List, ListItem } from './';
 
-// it('FormInput without crashing', () => {
-//   const div = document.createElement('div');
-//   ReactDOM.render(<FormInput />, div);
-// });
-
 it('should have 2 listitems', () => {
   const items = [
-      "stefan",
-      "felix",
+    "stefan",
+    "felix",
   ]
-  const wrapper = mount( 
+  const wrapper = mount(
     <List names={items} />
   )
 

@@ -11,4 +11,9 @@ const List = props => {
   )
 }
 
+List.propTypes = {
+  names: React.PropTypes.arrayOf(React.PropTypes.object),
+}
+
+
 export default List
