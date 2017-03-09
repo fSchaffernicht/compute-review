@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button } from './index'
+import { Button, Li } from './index'
 
 const ListItem = (props) => {
   const {
@@ -9,13 +9,13 @@ const ListItem = (props) => {
   } = props;
 
   return (
-    <li>
+    <Li>
       <span style={{ color: person.notAvailable ? 'lightgrey' : 'black' }}>
         { person.name }
       </span>
       <Button onClick={() => onRemove(person.name)}>-</Button>
       <Button onClick={() => onAvailabilityChanged(person.name)}>toggle availability</Button>
-    </li>
+    </Li>
   )
 }
 
