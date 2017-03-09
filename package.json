@@ -3,7 +3,10 @@
   "version": "1.0.0",
   "description": "compute code reviewer",
   "main": "index.js",
+  "homepage": "https://github.com/fSchaffernicht/compute-review#readme",
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "review-cli": "babel-node app.js",
     "start": "react-scripts start",
     "build": "react-scripts build",
@@ -27,7 +30,6 @@
   "bugs": {
     "url": "https://github.com/fSchaffernicht/compute-review/issues"
   },
-  "homepage": "https://github.com/fSchaffernicht/compute-review#readme",
   "dependencies": {
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
@@ -44,6 +46,7 @@
     "babel-register": "^6.18.0",
     "enzyme": "^2.7.1",
     "enzyme-matchers": "^2.1.2",
+    "gh-pages": "^0.12.0",
     "jest-enzyme": "^2.1.2",
     "lodash": "^4.17.4",
     "prompt": "^1.0.0",
