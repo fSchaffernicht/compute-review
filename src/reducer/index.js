@@ -1,11 +1,11 @@
 import { CHANGE_INPUT, ADD_NAME, REMOVE_NAME, TOGGLE_AVAILABILITY } from '../actions'
 import { LOAD, SAVE } from 'redux-storage';
 
-import { errors } from '../const'
+import { errors } from '../const';
 
-import {computePairsAvailable} from '../compute';
+import { computePairsAvailable } from '../compute';
 
-const initialState = {
+export const initialState = {
   inputText: {
     value: '',
     error: ''
@@ -17,9 +17,9 @@ const initialState = {
 const teamReducer = (state = initialState, action) => {
   switch (action.type) {
 
-    // case LOAD: {
-    //     return action.payload;
-    //   }
+    case LOAD: {
+      return action.payload;
+    }
 
     // case SAVE: {
     //     return state;
@@ -94,7 +94,7 @@ const teamReducer = (state = initialState, action) => {
     case TOGGLE_AVAILABILITY: {
       const newNames = state.names.map((item, index) => {
         if(item.name === action.payload) {
-          item.notAvailable = true;
+          item.notAvailable = !item.notAvailable;
         }
         return item
       })

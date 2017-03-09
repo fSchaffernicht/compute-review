@@ -7,10 +7,12 @@ import { shallow, mount, render } from 'enzyme';
 // components
 import { List, ListItem } from './';
 
+import { createName } from '../util';
+
 it('should have 2 listitems', () => {
   const items = [
-    "stefan",
-    "felix",
+    createName({name: "stefan"}),
+    createName({name: "felix"}),
   ]
   const wrapper = mount(
     <List names={items} />

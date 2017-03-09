@@ -1,30 +1,16 @@
 import teamReducer from './index'
 import { changeInput, addName, removeName, toggleAvailability } from '../actions'
-
+import { createName } from '../util';
 import { errors } from '../const'
 
-const defaultState = {
-  inputText: {
-    value: '',
-    error: ''
-  },
-  names: []
-}
+import { initialState } from './index';
 
 const getState = (props = {}) => {
   return {
-    ...defaultState,
+    ...initialState,
     ...props
   }
 }
-
-const createName = ({
-  name = '',
-  notAvailable = false
-}) => ({
-  name,
-  notAvailable
-})
 
 it('inputText should have value of Satan', () => {
   const state = {
@@ -234,4 +220,34 @@ it('if 1 of 4 persons is notAvailable, then the reducer has to build only 3 pair
 
   expect(actual.pairs.length).toEqual(3);
   expect(actual.names.find((item) => { return item.name === "Dominik" }).notAvailable).toEqual(true);
+});
+
+it('toggle twice leaves person available', () => {
+  const state = {
+    names: [
+      createName({name: 'Florian'}),
+    ]
+  }
+
+  const actual = teamReducer(state, toggleAvailability('Florian'));
+  const actual2 = teamReducer(actual, toggleAvailability('Florian'));
+
+  expect(actual2.names.find((item) => { return item.name === 'Florian' }).notAvailable).toEqual(false);
+});
+
+it('check if pairs are in correct object structure', () => {
+  const state = {
+    names: [],
+  };
+
+  const expectedPairs = [{
+    reviewee: createName({name:'Florian'}),
+    reviewer: createName({name:'Florian'}),
+  }];
+
+  const actual = teamReducer(state, addName('Florian'));
+
+  const actualPairs = actual.pairs;
+
+  expect(actualPairs).toEqual(expectedPairs);
 })
