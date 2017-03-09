@@ -1,12 +1,20 @@
 import React from 'react'
 import { Button } from './index'
 
-const ListItem = props => {
+const ListItem = (props) => {
+  const {
+    person,
+    onRemove,
+    onAvailabilityChanged,
+  } = props;
+
   return (
     <li>
-      { props.name }
-      <Button onClick={() => props.onRemove(props.name)}>-</Button>
-      <Button onClick={() => props.onAvailabilityChanged(props.name)}>toggle availability</Button>
+      <span style={{ color: person.notAvailable ? 'lightgrey' : 'black' }}>
+        { person.name }
+      </span>
+      <Button onClick={() => onRemove(person.name)}>-</Button>
+      <Button onClick={() => onAvailabilityChanged(person.name)}>toggle availability</Button>
     </li>
   )
 }
