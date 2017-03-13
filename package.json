@@ -10,7 +10,9 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "tape-test": "tape -r babel-register ./tests/compute-test.js | tap-spec",
-    "tdd": "tape-watch -r babel-register ./tests/compute-test.js | tap-spec"
+    "tdd": "tape-watch -r babel-register ./tests/compute-test.js | tap-spec",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "jest": {
     "unmockedModulePathPatterns": [
@@ -27,7 +29,7 @@
   "bugs": {
     "url": "https://github.com/fSchaffernicht/compute-review/issues"
   },
-  "homepage": "https://github.com/fSchaffernicht/compute-review#readme",
+  "homepage": "https://fSchaffernicht.github.io/compute-review",
   "dependencies": {
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
@@ -35,6 +37,7 @@
     "redux": "^3.6.0",
     "redux-logger": "^2.8.0",
     "redux-storage": "^4.1.2",
+    "redux-storage-engine-localstorage": "^1.1.4",
     "styled-components": "^1.4.2"
   },
   "devDependencies": {
@@ -43,6 +46,7 @@
     "babel-register": "^6.18.0",
     "enzyme": "^2.7.1",
     "enzyme-matchers": "^2.1.2",
+    "gh-pages": "^0.12.0",
     "jest-enzyme": "^2.1.2",
     "lodash": "^4.17.4",
     "prompt": "^1.0.0",
