@@ -18,7 +18,10 @@ const teamReducer = (state = initialState, action) => {
   switch (action.type) {
 
     case LOAD: {
-      return action.payload;
+      return {
+        ...state,
+        ...action.payload,
+      };
     }
 
     // case SAVE: {
