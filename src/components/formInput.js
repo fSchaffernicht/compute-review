@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Input } from './index'
+import { Button, Input, Li } from './index'
 
 const FormInput = props => {
 
@@ -11,10 +11,10 @@ const FormInput = props => {
     }
 
   return (
-    <div>
+    <Li>
       <Button onClick={props.onClick}>Add</Button>
       <Input onChange={props.onChange} value={props.name} onKeyPress={handleKeyPress} />
-    </div>
+    </Li>
   )
 }
 

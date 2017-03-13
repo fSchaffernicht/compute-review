@@ -2,17 +2,18 @@
   "name": "compute-review",
   "version": "1.0.0",
   "description": "compute code reviewer",
+  "homepage": "https://fSchaffernicht.github.io/compute-review",
   "main": "index.js",
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "review-cli": "babel-node app.js",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "tape-test": "tape -r babel-register ./tests/compute-test.js | tap-spec",
-    "tdd": "tape-watch -r babel-register ./tests/compute-test.js | tap-spec",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "tdd": "tape-watch -r babel-register ./tests/compute-test.js | tap-spec"
   },
   "jest": {
     "unmockedModulePathPatterns": [
@@ -29,7 +30,6 @@
   "bugs": {
     "url": "https://github.com/fSchaffernicht/compute-review/issues"
   },
-  "homepage": "https://fSchaffernicht.github.io/compute-review",
   "dependencies": {
     "react": "^15.4.2",
     "react-dom": "^15.4.2",

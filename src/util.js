@@ -11,5 +11,13 @@ export const generateMailtoLink = ( {
 }
 
 const pairsToString = (pairs) => {
-  return pairs.map(x => `${x.reviewer} => ${x.reviewee}`).join('%0A');
+  return pairs.map(x => `${x.reviewer.name} => ${x.reviewee.name}`).join('%0A');
 }
+
+export const createName = ({
+  name = '',
+  notAvailable = false
+}) => ({
+  name,
+  notAvailable
+})

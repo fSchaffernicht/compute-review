@@ -1,7 +1,16 @@
 import teamReducer from './index'
 import { changeInput, addName, removeName, toggleAvailability } from '../actions'
-
+import { createName } from '../util';
 import { errors } from '../const'
+
+import { initialState } from './index';
+
+const getState = (props = {}) => {
+  return {
+    ...initialState,
+    ...props
+  }
+}
 
 it('inputText should have value of Satan', () => {
   const state = {
@@ -34,11 +43,11 @@ it('should add new Name', () => {
   }
 
   const actual = teamReducer(state, addName('Satan'))
-  const expected = {
+  const expected = getState({
     names: [
-      'Satan'
+      createName({name: 'Satan'}),
     ]
-  }
+  })
 
   expect(actual.names).toEqual(expected.names)
 })
@@ -120,7 +129,7 @@ it('should throw error when trying to add duplicate', () => {
       error: ''
     },
     names: [
-      'Florian'
+      createName({name: 'Florian'})
     ],
   }
 
@@ -132,7 +141,7 @@ it('should throw error when trying to add duplicate', () => {
       error: errors.duplicateName
     },
     names: [
-      'Florian'
+      createName({name: 'Florian'})
     ],
   }
 
@@ -154,14 +163,14 @@ it('should generate two pairs for two names', () => {
 it('can remove items from list', () => {
   const state = {
     names: [
-      "Florian",
-      "Felix",
+      createName({name: 'Florian'}),
+      createName({name: 'Felix'}),
     ]
   }
 
   const expected = {
     names: [
-      "Florian",
+      createName({name: 'Florian'})
     ]
   }
 
@@ -174,8 +183,8 @@ it('can remove items from list', () => {
 it('can not remove empty name from list', () => {
   const state = {
     names: [
-      "Florian",
-      "Felix",
+      createName({name: 'Florian'}),
+      createName({name: 'Felix'}),
     ]
   }
 
@@ -187,8 +196,8 @@ it('can not remove empty name from list', () => {
 it('can not remove null from list', () => {
   const state = {
     names: [
-      "Florian",
-      "Felix",
+      createName({name: 'Florian'}),
+      createName({name: 'Felix'}),
     ]
   }
 
@@ -200,22 +209,10 @@ it('can not remove null from list', () => {
 it('if 1 of 4 persons is notAvailable, then the reducer has to build only 3 pairs', () => {
   const state = {
     names: [
-      {
-        name: "Florian",
-        notAvailable: false
-      },
-      {
-        name: "Felix",
-        notAvailable: false,
-      },
-      {
-        name: "Dominik",
-        notAvailable: false,
-      },
-      {
-        name: "Stephan",
-        notAvailable: false,
-      }
+      createName({name: 'Florian'}),
+      createName({name: 'Felix'}),
+      createName({name: 'Dominik'}),
+      createName({name: 'Stephan'}),
     ]
   }
 
@@ -223,4 +220,34 @@ it('if 1 of 4 persons is notAvailable, then the reducer has to build only 3 pair
 
   expect(actual.pairs.length).toEqual(3);
   expect(actual.names.find((item) => { return item.name === "Dominik" }).notAvailable).toEqual(true);
+});
+
+it('toggle twice leaves person available', () => {
+  const state = {
+    names: [
+      createName({name: 'Florian'}),
+    ]
+  }
+
+  const actual = teamReducer(state, toggleAvailability('Florian'));
+  const actual2 = teamReducer(actual, toggleAvailability('Florian'));
+
+  expect(actual2.names.find((item) => { return item.name === 'Florian' }).notAvailable).toEqual(false);
+});
+
+it('check if pairs are in correct object structure', () => {
+  const state = {
+    names: [],
+  };
+
+  const expectedPairs = [{
+    reviewee: createName({name:'Florian'}),
+    reviewer: createName({name:'Florian'}),
+  }];
+
+  const actual = teamReducer(state, addName('Florian'));
+
+  const actualPairs = actual.pairs;
+
+  expect(actualPairs).toEqual(expectedPairs);
 })
