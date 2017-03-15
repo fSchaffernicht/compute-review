@@ -1,3 +1,5 @@
+import { LOAD, SAVE } from 'redux-storage';
+
 import teamReducer from './index'
 import { changeInput, addName, removeName, toggleAvailability } from '../actions'
 import { createName } from '../util';
@@ -251,3 +253,16 @@ it('check if pairs are in correct object structure', () => {
 
   expect(actualPairs).toEqual(expectedPairs);
 })
+
+it('inital load should use initial state', () => {
+  const state = getState();
+
+  const actual = teamReducer(state, {
+    type: LOAD,
+    payload: {},
+  });
+
+  const expected = getState();
+
+  expect(actual).toEqual(expected);
+});

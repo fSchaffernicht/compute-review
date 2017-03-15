@@ -16,16 +16,25 @@ export const initialState = {
 
 const teamReducer = (state = initialState, action) => {
   switch (action.type) {
-
     case LOAD: {
+      const newNames = action.payload.names ? action.payload.names : [];
       return {
         ...state,
         ...action.payload,
+        pairs: computePairsAvailable(newNames)
       };
     }
 
     // case SAVE: {
-    //     return state;
+    //   console.log('S A V E')
+    //     return {
+    //       inputText: {
+    //         value: '',
+    //         error: ''
+    //       },
+    //       names: state.names,
+    //       pairs: [],
+    //     };
     //   }
 
 
