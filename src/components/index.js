@@ -7,7 +7,7 @@ import ErrorDisplay from './errorDisplay'
 import Pairs from './pairs'
 import Link from './link'
 import Li from './li'
-import Header from './FancyPants'
+import Header from './Header'
 
 export {
   List,
