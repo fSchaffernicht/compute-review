@@ -5,5 +5,4 @@ const Input = styled.input`
   background: #f7f7f7;
   color: black;
 `
-
 export default Input

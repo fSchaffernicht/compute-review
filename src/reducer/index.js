@@ -1,5 +1,8 @@
 import { CHANGE_INPUT, ADD_NAME, REMOVE_NAME, TOGGLE_AVAILABILITY } from '../actions'
-import { LOAD, SAVE } from 'redux-storage';
+import {
+  LOAD,
+  // SAVE,
+} from 'redux-storage';
 
 import { errors } from '../const';
 

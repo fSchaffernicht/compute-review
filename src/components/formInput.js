@@ -9,7 +9,6 @@ const FormInput = props => {
         props.onClick()
       }
     }
-
   return (
     <Li>
       <Button onClick={props.onClick}>Add</Button>

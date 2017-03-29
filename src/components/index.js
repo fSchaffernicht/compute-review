@@ -7,6 +7,7 @@ import ErrorDisplay from './errorDisplay'
 import Pairs from './pairs'
 import Link from './link'
 import Li from './li'
+import Header from './FancyPants'
 
 export {
   List,
@@ -18,4 +19,5 @@ export {
   ErrorDisplay,
   Pairs,
   Li,
+  Header,
 }

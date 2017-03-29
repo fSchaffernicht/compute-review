@@ -1,17 +1,17 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
 import { connect } from 'react-redux';
 import { changeInput, addName, removeName, toggleAvailability } from './actions'
 
 // components
-import { List, Button, Input, FormInput, ErrorDisplay, Pairs, Link } from './components';
+import { List, Button, Input, FormInput, ErrorDisplay, Pairs, Link, Header } from './components';
 import { generateMailtoLink } from './util';
-
 
 const App = (props) => {
   return (
     <div className="App">
+      <Header title="Code Revie Tool" />
+
       <ErrorDisplay error={props.error} />
       <FormInput
         onChange={ event => props.onInputChange(event.target.value) }
@@ -22,7 +22,7 @@ const App = (props) => {
         names={ props.names }
         onRemove={ (name) => props.onRemoveName(name)}
         onAvailabilityChanged={(name) => props.onAvailabilityChanged(name)}
-        />
+      />
       <hr/>
       <Pairs pairs={props.pairs} />
       <hr/>

@@ -8,7 +8,6 @@ import './index.css';
 import createLogger from 'redux-logger';
 import createEngine from 'redux-storage-engine-localstorage';
 import * as storage from 'redux-storage';
-import { combineReducers } from 'redux';
 
 const logger = createLogger();
 const engine = createEngine('review-storage');
