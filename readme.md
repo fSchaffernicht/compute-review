@@ -1,7 +1,7 @@
 # compute review constelation
 ## eat more cookie's
 
-This project was bootstrapped with [Create React
+This project was bootstrapped with [Create React and is hosted on github-pages: https://fschaffernicht.github.io/compute-review/
 
 ## Getting started
 `npm install`
